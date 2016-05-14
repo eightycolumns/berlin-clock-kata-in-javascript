@@ -166,4 +166,11 @@ describe('Berlin Clock', function () {
       expect(berlinClock.secondsLamp()).toBe('O');
     });
   });
+
+  describe('composite row', function () {
+    it('is YOOOOOOOOOOOOOOOOOOOOOOO at 00:00:00', function () {
+      berlinClock.setTime(0, 0, 0);
+      expect(berlinClock.compositeRow()).toBe('YOOOOOOOOOOOOOOOOOOOOOOO');
+    });
+  });
 });
