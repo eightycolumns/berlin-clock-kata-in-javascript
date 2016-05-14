@@ -80,4 +80,11 @@ describe('Berlin Clock', function () {
       expect(berlinClock.fiveMinuteRow()).toBe('YYRYYRYYRYY');
     });
   });
+
+  describe('one-hour row', function () {
+    it('is OOOO at hour 0', function () {
+      berlinClock.setTime(0, 0, 0);
+      expect(berlinClock.oneHourRow()).toBe('OOOO');
+    });
+  });
 });
