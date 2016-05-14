@@ -91,5 +91,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(23, 0, 0);
       expect(berlinClock.oneHourRow()).toBe('RRRO');
     });
+
+    it('is OOOO at hour 10', function () {
+      berlinClock.setTime(10, 0, 0);
+      expect(berlinClock.oneHourRow()).toBe('OOOO');
+    });
   });
 });
