@@ -154,4 +154,11 @@ describe('Berlin Clock', function () {
       expect(berlinClock.fiveHourRow()).toBe('RRRR');
     });
   });
+
+  describe('seconds lamp', function () {
+    it('is Y at second 0', function () {
+      berlinClock.setTime(0, 0, 0);
+      expect(berlinClock.secondsLamp()).toBe('Y');
+    });
+  });
 });
