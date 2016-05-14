@@ -69,5 +69,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(0, 30, 0);
       expect(berlinClock.fiveMinuteRow()).toBe('YYRYYROOOOO');
     });
+
+    it('is YYRYYRYYRYO at minute 54', function () {
+      berlinClock.setTime(0, 54, 0);
+      expect(berlinClock.fiveMinuteRow()).toBe('YYRYYRYYRYO');
+    });
   });
 });
