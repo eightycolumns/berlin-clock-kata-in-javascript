@@ -172,5 +172,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(0, 0, 0);
       expect(berlinClock.compositeRow()).toBe('YOOOOOOOOOOOOOOOOOOOOOOO');
     });
+
+    it('is ORRRRRRROYYRYYRYYRYYYYYY at 23:59:59', function () {
+      berlinClock.setTime(23, 59, 59);
+      expect(berlinClock.compositeRow()).toBe('ORRRRRRROYYRYYRYYRYYYYYY');
+    });
   });
 });
