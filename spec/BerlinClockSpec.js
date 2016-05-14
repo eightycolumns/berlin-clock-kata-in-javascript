@@ -123,5 +123,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(0, 0, 0);
       expect(berlinClock.fiveHourRow()).toBe('OOOO');
     });
+
+    it('is RRRR at hour 23', function () {
+      berlinClock.setTime(23, 0, 0);
+      expect(berlinClock.fiveHourRow()).toBe('RRRR');
+    });
   });
 });
