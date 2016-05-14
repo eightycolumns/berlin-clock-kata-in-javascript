@@ -37,5 +37,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(0, 13, 0);
       expect(berlinClock.oneMinuteRow()).toBe('YYYO');
     });
+
+    it('is YYYY at minute 14', function () {
+      berlinClock.setTime(0, 14, 0);
+      expect(berlinClock.oneMinuteRow()).toBe('YYYY');
+    });
   });
 });
