@@ -160,5 +160,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(0, 0, 0);
       expect(berlinClock.secondsLamp()).toBe('Y');
     });
+
+    it('is O at second 59', function () {
+      berlinClock.setTime(0, 0, 59);
+      expect(berlinClock.secondsLamp()).toBe('O');
+    });
   });
 });
