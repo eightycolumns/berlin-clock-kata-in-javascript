@@ -106,5 +106,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(12, 0, 0);
       expect(berlinClock.oneHourRow()).toBe('RROO');
     });
+
+    it('is RRRO at hour 13', function () {
+      berlinClock.setTime(13, 0, 0);
+      expect(berlinClock.oneHourRow()).toBe('RRRO');
+    });
   });
 });
