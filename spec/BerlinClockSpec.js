@@ -148,5 +148,10 @@ describe('Berlin Clock', function () {
       berlinClock.setTime(19, 0, 0);
       expect(berlinClock.fiveHourRow()).toBe('RRRO');
     });
+
+    it('is RRRR at hour 20', function () {
+      berlinClock.setTime(20, 0, 0);
+      expect(berlinClock.fiveHourRow()).toBe('RRRR');
+    });
   });
 });
