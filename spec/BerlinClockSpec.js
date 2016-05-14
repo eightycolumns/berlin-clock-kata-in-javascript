@@ -117,4 +117,11 @@ describe('Berlin Clock', function () {
       expect(berlinClock.oneHourRow()).toBe('RRRR');
     });
   });
+
+  describe('five-hour row', function () {
+    it('is OOOO at hour 0', function () {
+      berlinClock.setTime(0, 0, 0);
+      expect(berlinClock.fiveHourRow()).toBe('OOOO');
+    });
+  });
 });
