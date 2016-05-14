@@ -43,4 +43,11 @@ describe('Berlin Clock', function () {
       expect(berlinClock.oneMinuteRow()).toBe('YYYY');
     });
   });
+
+  describe('five-minute row', function () {
+    it('is OOOOOOOOOOO at minute 0', function () {
+      berlinClock.setTime(0, 0, 0);
+      expect(berlinClock.fiveMinuteRow()).toBe('OOOOOOOOOOO');
+    });
+  });
 });
