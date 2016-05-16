@@ -125,6 +125,10 @@ module.exports = deepFreeze;
 },{}],3:[function(require,module,exports){
 var BerlinClock = require('./lib/BerlinClock');
 
+var berlinClock = new BerlinClock();
+
+var lights = document.querySelectorAll('.light');
+
 (function updateClock() {
   var date = new Date();
 
@@ -132,12 +136,9 @@ var BerlinClock = require('./lib/BerlinClock');
   var minute = date.getMinutes();
   var second = date.getSeconds();
 
-  var berlinClock = new BerlinClock();
-
   berlinClock.setTime(hour, minute, second);
 
   var compositeRow = berlinClock.compositeRow();
-  var lights = document.querySelectorAll('.light');
 
   for (var i = 0; i < compositeRow.length && i < lights.length; i += 1) {
     if (compositeRow[i] === 'Y' || compositeRow[i] === 'R') {
@@ -145,17 +146,17 @@ var BerlinClock = require('./lib/BerlinClock');
     } else if (compositeRow[i] === 'O') {
       turnOff(lights[i]);
     }
-
-    function turnOn(light) {
-      light.className = light.className.replace('off', 'on');
-    }
-
-    function turnOff(light) {
-      light.className = light.className.replace('on', 'off');
-    }
   }
 
   window.requestAnimationFrame(updateClock);
 })();
+
+function turnOn(light) {
+  light.className = light.className.replace('off', 'on');
+}
+
+function turnOff(light) {
+  light.className = light.className.replace('on', 'off');
+}
 
 },{"./lib/BerlinClock":1}]},{},[3]);
