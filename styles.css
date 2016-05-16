@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #333;
+  display: table;
+  text-align: center;
+}
+
+main {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#berlinClock {
+  font-size: 0;
+}
+
+.light {
+  display: inline-block;
+  margin: 8px 4px;
+}
+
+#secondsLamp .light {
+  height: 96px;
+  width: 96px;
+}
+
+#fiveHourRow .light,
+#oneHourRow .light,
+#oneMinuteRow .light {
+  height: 64px;
+  width: 102px;
+}
+
+#fiveMinuteRow .light {
+  height: 64px;
+  width: 32px;
+}
+
+#secondsLamp .light {
+  border-radius: 48px;
+}
+
+#fiveHourRow :first-child,
+#oneHourRow :first-child,
+#fiveMinuteRow :first-child,
+#oneMinuteRow :first-child {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+#fiveHourRow :last-child,
+#oneHourRow :last-child,
+#fiveMinuteRow :last-child,
+#oneMinuteRow :last-child {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.red.on {
+  background-color: #f33;
+}
+
+.red.off {
+  background-color: #633;
+}
+
+.yellow.on {
+  background-color: #ff3;
+}
+
+.yellow.off {
+  background-color: #663;
+}
