@@ -12,30 +12,15 @@ function BerlinClock() {
     second = newSecond;
   }
 
-  function oneMinuteRow() {
-    var row = '';
-
-    for (var i = 0; i < minute % 5; i += 1) {
-      row += 'Y';
-    }
-
-    while (row.length < 4) {
-      row += 'O';
-    }
-
-    return row;
+  function secondsLamp() {
+    return (second % 2 === 0) ? '1' : '0';
   }
 
-  function fiveMinuteRow() {
+  function fiveHourRow() {
     var row = '';
 
-    for (var i = 0; i < Math.floor(minute / 5); i += 1) {
-      row += ((row.length + 1) % 3 === 0) ? 'R' : 'Y';
-    }
-
-    while (row.length < 11) {
-      row += 'O';
-    }
+    row += repeat('1', Math.floor(hour / 5));
+    row += repeat('0', 4 - row.length);
 
     return row;
   }
@@ -43,33 +28,38 @@ function BerlinClock() {
   function oneHourRow() {
     var row = '';
 
-    for (var i = 0; i < hour % 5; i += 1) {
-      row += 'R';
-    }
-
-    while (row.length < 4) {
-      row += 'O';
-    }
+    row += repeat('1', hour % 5);
+    row += repeat('0', 4 - row.length);
 
     return row;
   }
 
-  function fiveHourRow() {
+  function fiveMinuteRow() {
     var row = '';
 
-    for (var i = 0; i < Math.floor(hour / 5); i += 1) {
-      row += 'R';
-    }
-
-    while (row.length < 4) {
-      row += 'O';
-    }
+    row += repeat('1', Math.floor(minute / 5));
+    row += repeat('0', 11 - row.length);
 
     return row;
   }
 
-  function secondsLamp() {
-    return (second % 2 === 0) ? 'Y' : 'O';
+  function oneMinuteRow() {
+    var row = '';
+
+    row += repeat('1', minute % 5);
+    row += repeat('0', 4 - row.length);
+
+    return row;
+  }
+
+  function repeat(character, times) {
+    var string = '';
+
+    for (var i = 0; i < times; i += 1) {
+      string += character;
+    }
+
+    return string;
   }
 
   function compositeRow() {
@@ -84,11 +74,11 @@ function BerlinClock() {
 
   return deepFreeze({
     setTime: setTime,
-    oneMinuteRow: oneMinuteRow,
-    fiveMinuteRow: fiveMinuteRow,
-    oneHourRow: oneHourRow,
-    fiveHourRow: fiveHourRow,
     secondsLamp: secondsLamp,
+    fiveHourRow: fiveHourRow,
+    oneHourRow: oneHourRow,
+    fiveMinuteRow: fiveMinuteRow,
+    oneMinuteRow: oneMinuteRow,
     compositeRow: compositeRow
   });
 }
@@ -141,9 +131,9 @@ var lights = document.querySelectorAll('.light');
   var compositeRow = berlinClock.compositeRow();
 
   for (var i = 0; i < compositeRow.length && i < lights.length; i += 1) {
-    if (compositeRow[i] === 'Y' || compositeRow[i] === 'R') {
+    if (compositeRow[i] === '1') {
       turnOn(lights[i]);
-    } else if (compositeRow[i] === 'O') {
+    } else if (compositeRow[i] === '0') {
       turnOff(lights[i]);
     }
   }
