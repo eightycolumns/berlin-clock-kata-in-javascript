@@ -16,9 +16,9 @@ var lights = document.querySelectorAll('.light');
   var compositeRow = berlinClock.compositeRow();
 
   for (var i = 0; i < compositeRow.length && i < lights.length; i += 1) {
-    if (compositeRow[i] === 'Y' || compositeRow[i] === 'R') {
+    if (compositeRow[i] === '1') {
       turnOn(lights[i]);
-    } else if (compositeRow[i] === 'O') {
+    } else if (compositeRow[i] === '0') {
       turnOff(lights[i]);
     }
   }
