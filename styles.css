@@ -65,18 +65,26 @@ main {
   border-bottom-right-radius: 16px;
 }
 
-.red.on {
-  background-color: #f33;
-}
-
-.red.off {
-  background-color: #633;
-}
-
-.yellow.on {
+#secondsLamp .light.on,
+#fiveMinuteRow .light.on:not(:nth-child(3n + 3)),
+#oneMinuteRow .light.on {
   background-color: #ff3;
 }
 
-.yellow.off {
+#secondsLamp .light.off,
+#fiveMinuteRow .light.off:not(:nth-child(3n + 3)),
+#oneMinuteRow .light.off {
   background-color: #663;
+}
+
+#fiveHourRow .light.on,
+#oneHourRow .light.on,
+#fiveMinuteRow .light.on:nth-child(3n + 3) {
+  background-color: #f33;
+}
+
+#fiveHourRow .light.off,
+#oneHourRow .light.off,
+#fiveMinuteRow .light.off:nth-child(3n + 3) {
+  background-color: #633;
 }

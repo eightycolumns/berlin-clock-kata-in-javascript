@@ -27,9 +27,17 @@ var lights = document.querySelectorAll('.light');
 })();
 
 function turnOn(light) {
-  light.className = light.className.replace('off', 'on');
+  if (light.className.includes('off')) {
+    light.className = light.className.replace('off', 'on');
+  } else if (!light.className.includes('on')) {
+    light.className = light.className += ' on';
+  }
 }
 
 function turnOff(light) {
-  light.className = light.className.replace('on', 'off');
+  if (light.className.includes('on')) {
+    light.className = light.className.replace('on', 'off');
+  } else if (!light.className.includes('off')) {
+    light.className = light.className += ' off';
+  }
 }
