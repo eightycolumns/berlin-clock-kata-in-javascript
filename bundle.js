@@ -17,37 +17,28 @@ function BerlinClock() {
   }
 
   function fiveHourRow() {
-    var row = '';
-
-    row += repeat('1', Math.floor(hour / 5));
-    row += repeat('0', 4 - row.length);
-
-    return row;
+    return row(4, Math.floor(hour / 5));
   }
 
   function oneHourRow() {
-    var row = '';
-
-    row += repeat('1', hour % 5);
-    row += repeat('0', 4 - row.length);
-
-    return row;
+    return row(4, hour % 5);
   }
 
   function fiveMinuteRow() {
-    var row = '';
-
-    row += repeat('1', Math.floor(minute / 5));
-    row += repeat('0', 11 - row.length);
-
-    return row;
+    return row(11, Math.floor(minute / 5));
   }
 
   function oneMinuteRow() {
+    return row(4, minute % 5);
+  }
+
+  function row(lights, lightsOn) {
+    var lightsOff = lights - lightsOn;
+
     var row = '';
 
-    row += repeat('1', minute % 5);
-    row += repeat('0', 4 - row.length);
+    row += repeat('1', lightsOn);
+    row += repeat('0', lightsOff);
 
     return row;
   }
