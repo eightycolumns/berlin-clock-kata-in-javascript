@@ -1,7 +1,5 @@
 var BerlinClock = require('./lib/BerlinClock');
 
-var berlinClock = new BerlinClock();
-
 var lights = document.querySelectorAll('.light');
 
 (function updateClock() {
@@ -11,9 +9,7 @@ var lights = document.querySelectorAll('.light');
   var minute = date.getMinutes();
   var second = date.getSeconds();
 
-  berlinClock.setTime(hour, minute, second);
-
-  var compositeRow = berlinClock.compositeRow();
+  var compositeRow = BerlinClock.compositeRow(hour, minute, second);
 
   for (var i = 0; i < compositeRow.length && i < lights.length; i += 1) {
     if (compositeRow[i] === '1') {

@@ -1,181 +1,145 @@
 var BerlinClock = require('../lib/BerlinClock');
 
 describe('Berlin Clock', function () {
-  var berlinClock;
-
-  beforeEach(function () {
-    berlinClock = new BerlinClock();
-  });
-
   describe('seconds lamp', function () {
-    it('is 1 at 00:00:00', function () {
-      berlinClock.setTime(0, 0, 0);
-      expect(berlinClock.secondsLamp()).toBe('1');
+    it('is 1 at second 0', function () {
+      expect(BerlinClock.secondsLamp(0)).toBe('1');
     });
 
-    it('is 0 at 00:00:59', function () {
-      berlinClock.setTime(0, 0, 59);
-      expect(berlinClock.secondsLamp()).toBe('0');
+    it('is 0 at second 59', function () {
+      expect(BerlinClock.secondsLamp(59)).toBe('0');
     });
   });
 
   describe('five-hour row', function () {
-    it('is 0000 at 00:00:00', function () {
-      berlinClock.setTime(0, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('0000');
+    it('is 0000 at hour 0', function () {
+      expect(BerlinClock.fiveHourRow(0)).toBe('0000');
     });
 
-    it('is 1111 at 23:00:00', function () {
-      berlinClock.setTime(23, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('1111');
+    it('is 1111 at hour 23', function () {
+      expect(BerlinClock.fiveHourRow(23)).toBe('1111');
     });
 
-    it('is 0000 at 04:00:00', function () {
-      berlinClock.setTime(4, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('0000');
+    it('is 0000 at hour 4', function () {
+      expect(BerlinClock.fiveHourRow(4)).toBe('0000');
     });
 
-    it('is 1000 at 05:00:00', function () {
-      berlinClock.setTime(5, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('1000');
+    it('is 1000 at hour 5', function () {
+      expect(BerlinClock.fiveHourRow(5)).toBe('1000');
     });
 
-    it('is 1100 at 12:00:00', function () {
-      berlinClock.setTime(12, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('1100');
+    it('is 1100 at hour 12', function () {
+      expect(BerlinClock.fiveHourRow(12)).toBe('1100');
     });
 
-    it('is 1110 at 19:00:00', function () {
-      berlinClock.setTime(19, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('1110');
+    it('is 1110 at hour 19', function () {
+      expect(BerlinClock.fiveHourRow(19)).toBe('1110');
     });
 
-    it('is 1111 at 20:00:00', function () {
-      berlinClock.setTime(20, 0, 0);
-      expect(berlinClock.fiveHourRow()).toBe('1111');
+    it('is 1111 at hour 20', function () {
+      expect(BerlinClock.fiveHourRow(20)).toBe('1111');
     });
   });
 
   describe('one-hour row', function () {
-    it('is 0000 at 00:00:00', function () {
-      berlinClock.setTime(0, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('0000');
+    it('is 0000 at hour 0', function () {
+      expect(BerlinClock.oneHourRow(0)).toBe('0000');
     });
 
-    it('is 1110 at 23:00:00', function () {
-      berlinClock.setTime(23, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('1110');
+    it('is 1110 at hour 23', function () {
+      expect(BerlinClock.oneHourRow(23)).toBe('1110');
     });
 
-    it('is 0000 at 10:00:00', function () {
-      berlinClock.setTime(10, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('0000');
+    it('is 0000 at hour 10', function () {
+      expect(BerlinClock.oneHourRow(10)).toBe('0000');
     });
 
-    it('is 1000 at 11:00:00', function () {
-      berlinClock.setTime(11, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('1000');
+    it('is 1000 at hour 11', function () {
+      expect(BerlinClock.oneHourRow(11)).toBe('1000');
     });
 
-    it('is 1100 at 12:00:00', function () {
-      berlinClock.setTime(12, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('1100');
+    it('is 1100 at hour 12', function () {
+      expect(BerlinClock.oneHourRow(12)).toBe('1100');
     });
 
-    it('is 1110 at 13:00:00', function () {
-      berlinClock.setTime(13, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('1110');
+    it('is 1110 at hour 13', function () {
+      expect(BerlinClock.oneHourRow(13)).toBe('1110');
     });
 
-    it('is 1111 at 14:00:00', function () {
-      berlinClock.setTime(14, 0, 0);
-      expect(berlinClock.oneHourRow()).toBe('1111');
+    it('is 1111 at hour 14', function () {
+      expect(BerlinClock.oneHourRow(14)).toBe('1111');
     });
   });
 
   describe('five-minute row', function () {
-    it('is 00000000000 at 00:00:00', function () {
-      berlinClock.setTime(0, 0, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('00000000000');
+    it('is 00000000000 at minute 0', function () {
+      expect(BerlinClock.fiveMinuteRow(0)).toBe('00000000000');
     });
 
-    it('is 11111111111 at 00:59:00', function () {
-      berlinClock.setTime(0, 59, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('11111111111');
+    it('is 11111111111 at minute 59', function () {
+      expect(BerlinClock.fiveMinuteRow(59)).toBe('11111111111');
     });
 
-    it('is 00000000000 at 00:04:00', function () {
-      berlinClock.setTime(0, 4, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('00000000000');
+    it('is 00000000000 at minute 4', function () {
+      expect(BerlinClock.fiveMinuteRow(4)).toBe('00000000000');
     });
 
-    it('is 10000000000 at 00:05:00', function () {
-      berlinClock.setTime(0, 5, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('10000000000');
+    it('is 10000000000 at minute 5', function () {
+      expect(BerlinClock.fiveMinuteRow(5)).toBe('10000000000');
     });
 
-    it('is 11111100000 at 00:30:00', function () {
-      berlinClock.setTime(0, 30, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('11111100000');
+    it('is 11111100000 at minute 30', function () {
+      expect(BerlinClock.fiveMinuteRow(30)).toBe('11111100000');
     });
 
-    it('is 11111111110 at 00:54:00', function () {
-      berlinClock.setTime(0, 54, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('11111111110');
+    it('is 11111111110 at minute 54', function () {
+      expect(BerlinClock.fiveMinuteRow(54)).toBe('11111111110');
     });
 
-    it('is 11111111111 at 00:55:00', function () {
-      berlinClock.setTime(0, 55, 0);
-      expect(berlinClock.fiveMinuteRow()).toBe('11111111111');
+    it('is 11111111111 at minute 55', function () {
+      expect(BerlinClock.fiveMinuteRow(55)).toBe('11111111111');
     });
   });
 
   describe('one-minute row', function () {
-    it('is 0000 at 00:00:00', function () {
-      berlinClock.setTime(0, 0, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('0000');
+    it('is 0000 at minute 0', function () {
+      expect(BerlinClock.oneMinuteRow(0)).toBe('0000');
     });
 
-    it('is 1111 at 00:59:00', function () {
-      berlinClock.setTime(0, 59, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('1111');
+    it('is 1111 at minute 59', function () {
+      expect(BerlinClock.oneMinuteRow(59)).toBe('1111');
     });
 
-    it('is 0000 at 00:10:00', function () {
-      berlinClock.setTime(0, 10, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('0000');
+    it('is 0000 at minute 10', function () {
+      expect(BerlinClock.oneMinuteRow(10)).toBe('0000');
     });
 
-    it('is 1000 at 00:11:00', function () {
-      berlinClock.setTime(0, 11, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('1000');
+    it('is 1000 at minute 11', function () {
+      expect(BerlinClock.oneMinuteRow(11)).toBe('1000');
     });
 
-    it('is 1100 at 00:12:00', function () {
-      berlinClock.setTime(0, 12, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('1100');
+    it('is 1100 at minute 12', function () {
+      expect(BerlinClock.oneMinuteRow(12)).toBe('1100');
     });
 
-    it('is 1110 at 00:13:00', function () {
-      berlinClock.setTime(0, 13, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('1110');
+    it('is 1110 at minute 13', function () {
+      expect(BerlinClock.oneMinuteRow(13)).toBe('1110');
     });
 
-    it('is 1111 at 00:14:00', function () {
-      berlinClock.setTime(0, 14, 0);
-      expect(berlinClock.oneMinuteRow()).toBe('1111');
+    it('is 1111 at minute 14', function () {
+      expect(BerlinClock.oneMinuteRow(14)).toBe('1111');
     });
   });
 
   describe('composite row', function () {
     it('is 100000000000000000000000 at 00:00:00', function () {
-      berlinClock.setTime(0, 0, 0);
-      expect(berlinClock.compositeRow()).toBe('100000000000000000000000');
+      var compositeRow = BerlinClock.compositeRow(0, 0, 0);
+      expect(compositeRow).toBe('100000000000000000000000');
     });
 
     it('is 011111110111111111111111 at 23:59:59', function () {
-      berlinClock.setTime(23, 59, 59);
-      expect(berlinClock.compositeRow()).toBe('011111110111111111111111');
+      var compositeRow = BerlinClock.compositeRow(23, 59, 59);
+      expect(compositeRow).toBe('011111110111111111111111');
     });
   });
 });

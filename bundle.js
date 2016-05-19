@@ -1,39 +1,29 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var deepFreeze = require('./deepFreeze');
 
-function BerlinClock() {
-  var hour;
-  var minute;
-  var second;
-
-  function setTime(newHour, newMinute, newSecond) {
-    hour = newHour;
-    minute = newMinute;
-    second = newSecond;
-  }
-
-  function secondsLamp() {
+var BerlinClock = (function () {
+  function secondsLamp(second) {
     return (second % 2 === 0) ? '1' : '0';
   }
 
-  function fiveHourRow() {
+  function fiveHourRow(hour) {
     return row(4, Math.floor(hour / 5));
   }
 
-  function oneHourRow() {
+  function oneHourRow(hour) {
     return row(4, hour % 5);
   }
 
-  function fiveMinuteRow() {
+  function fiveMinuteRow(minute) {
     return row(11, Math.floor(minute / 5));
   }
 
-  function oneMinuteRow() {
+  function oneMinuteRow(minute) {
     return row(4, minute % 5);
   }
 
-  function row(lights, lightsOn) {
-    var lightsOff = lights - lightsOn;
+  function row(totalLights, lightsOn) {
+    var lightsOff = totalLights - lightsOn;
 
     var row = '';
 
@@ -53,18 +43,17 @@ function BerlinClock() {
     return string;
   }
 
-  function compositeRow() {
+  function compositeRow(hour, minute, second) {
     return (
-      secondsLamp() +
-      fiveHourRow() +
-      oneHourRow() +
-      fiveMinuteRow() +
-      oneMinuteRow()
+      secondsLamp(second) +
+      fiveHourRow(hour) +
+      oneHourRow(hour) +
+      fiveMinuteRow(minute) +
+      oneMinuteRow(minute)
     );
   }
 
   return deepFreeze({
-    setTime: setTime,
     secondsLamp: secondsLamp,
     fiveHourRow: fiveHourRow,
     oneHourRow: oneHourRow,
@@ -72,7 +61,7 @@ function BerlinClock() {
     oneMinuteRow: oneMinuteRow,
     compositeRow: compositeRow
   });
-}
+})();
 
 module.exports = BerlinClock;
 
@@ -106,8 +95,6 @@ module.exports = deepFreeze;
 },{}],3:[function(require,module,exports){
 var BerlinClock = require('./lib/BerlinClock');
 
-var berlinClock = new BerlinClock();
-
 var lights = document.querySelectorAll('.light');
 
 (function updateClock() {
@@ -117,9 +104,7 @@ var lights = document.querySelectorAll('.light');
   var minute = date.getMinutes();
   var second = date.getSeconds();
 
-  berlinClock.setTime(hour, minute, second);
-
-  var compositeRow = berlinClock.compositeRow();
+  var compositeRow = BerlinClock.compositeRow(hour, minute, second);
 
   for (var i = 0; i < compositeRow.length && i < lights.length; i += 1) {
     if (compositeRow[i] === '1') {
